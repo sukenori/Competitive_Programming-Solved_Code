@@ -1,0 +1,1 @@
+print([sum((i+1)%2==1 and (i+1)%(j+1)==0 for j in range(i+1)) for i in range(int(input()))].count(8))

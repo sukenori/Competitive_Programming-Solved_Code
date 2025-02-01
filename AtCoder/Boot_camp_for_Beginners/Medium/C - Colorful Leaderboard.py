@@ -1,0 +1,5 @@
+n=int(input())
+a=list(map(int,input().split()))
+c=len(set([_//400 for _ in a if _<3200]))
+oc=len([_ for _ in a if _>=3200])
+print(max(1,c),c+oc)

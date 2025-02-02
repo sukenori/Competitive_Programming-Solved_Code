@@ -1,19 +1,22 @@
 include atcoder/header
 let N,W=nextInt()
-import atcoder/extra/structure/set_map
-var
-  A=newSeq[(int,int)](N)
-  x=newSeqWith(W,initSortedSet[int]())
-  y=newSeq[int](W)
+var x=newSeqWith(W,newSeq[(int,int)]())
 for i in 0..<N:
-  let Xi,Yi=nextInt()
-  A[i]=(Xi,Yi)
-  x[Xi].incl(Yi)
-
+  let X,Y=nextInt()-1
+  x[X].add((Y,i))
+var
+  a=newSeq[int](N)
+  y=newSeqWith(2*10^5,-1)
+  c=newSeq[int](2*10^5)
+for i in 0..<W:
+  x[i].sort
+  for j in 0..<x[i].len:
+    a[x[i][j][1]]=j
+    y[j].max=x[i][j][0]
+    c[j]+=1
 let Q=nextInt()
 for _ in 1..Q:
   let
-    Ti=nextInt
-    Ai=nextInt()-1
-    y[A[Ai][1]]
-    x.lower_bound(A[Ai][0])-x.begin()
+    T=nextInt()
+    A=nextInt()-1
+  echo if T<=y[a[A]] or c[a[A]]<W: "Yes" else: "No"

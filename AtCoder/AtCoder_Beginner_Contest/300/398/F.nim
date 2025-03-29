@@ -1,10 +1,17 @@
 include atcoder/header
 let S=nextString()
-import deques
-var
-  l,r:Deque[char]
-  p=0
-for i,Si in S.reversed:
-  l.addFirst(Si); r.addLast(Si)
-  if l.toSeq==r.toSeq: p.max=i+1
-echo S&S.toSeq[0..^(p+1)].reversed.join
+proc m(s:string):seq[int] =
+  let
+    t=s.join("#")
+    n=t.len
+  var
+    r=newSeq[int](n)
+    c,m=0
+  for i in 0..<n:
+    if i<m: r[i]=min(m-i,r[2*c-i])
+    while i-r[i]-1>=0 and i+r[i]+1<n and t[i-r[i]-1]==t[i+r[i]+1]:
+      r[i]+=1
+    if i+r[i]>m: c=i; m=i+r[i]
+  return (0..<s.len).mapIt(r[it*2+1])
+echo m(S.reversed.join)
+echo m(S)

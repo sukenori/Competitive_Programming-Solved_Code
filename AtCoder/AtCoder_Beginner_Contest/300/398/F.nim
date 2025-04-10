@@ -4,14 +4,15 @@ proc m(s:string):seq[int] =
   let
     t=s.join("#")
     n=t.len
+  echo t
   var
-    r=newSeq[int](n)
+    r=newSeqWith(n,1)
     c,m=0
   for i in 0..<n:
-    if i<m: r[i]=min(m-i,r[2*c-i])
-    while i-r[i]-1>=0 and i+r[i]+1<n and t[i-r[i]-1]==t[i+r[i]+1]:
+    if i<m: r[i]=r[c-(i-c)]
+    while 0<=i-r[i] and i+r[i]<n and t[i-r[i]]==t[i+r[i]]:
       r[i]+=1
     if i+r[i]>m: c=i; m=i+r[i]
-  return (0..<s.len).mapIt(r[it*2+1])
-echo m(S.reversed.join)
+  return r#(0..<s.len).mapIt(r[it*2+1])
+
 echo m(S)

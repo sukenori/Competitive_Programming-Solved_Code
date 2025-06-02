@@ -1,12 +1,13 @@
 include atcoder/header
 let
   N,M=nextInt()
-  A = @[0] & newSeqWith(M,nextInt()).sorted & @[N+1]
+  A=(newSeqWith(M,nextInt())& @[0,N+1]).sorted
 var
   d:seq[int]
-  a=0
-for i in 0..<M+1:
+  m=int.inf
+for i in 0..M:
   let di=A[i+1]-A[i]-1
-  if di>0: d.add(di)
-for di in d: a+=ceilDiv(di,d.min)
+  if di>0: d.add(di); m.min=di
+var a=0
+for di in d: a+=ceilDiv(di,m)
 echo a

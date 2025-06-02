@@ -3,11 +3,12 @@ let N=nextInt()
 var
   P=newSeqWith(N,nextInt()-1)
   a:seq[int]
-var i=0; for j in 0..<N:
-  if P[j]==i:
-    for k in countdown(j-1,i,1):
-      echo k
-      swap(P[k],P[k+1]); a.add(k)
-      if P[k]!=k: echo -1; quit()
+var i,j=0; while i<N:
+  while j<N and P[j]!=i: j+=1
+  if i==j: break
+  for k in countdown(j-1,i):
+    swap(P[k],P[k+1]); a.add(k)
   i=j
-echo a.mapIt(it+1).join("\n")
+if a.len==N-1 and P==(0..<N).toSeq:
+  echo a.mapIt(it+1).join("\n")
+else: echo -1

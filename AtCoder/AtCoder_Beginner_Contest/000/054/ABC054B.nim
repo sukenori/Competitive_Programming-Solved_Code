@@ -5,8 +5,5 @@ let
   B=newSeqWith(M,nextString())
 for i in 0..N-M:
   for j in 0..N-M:
-    var Bi:seq[string]
-    for k in i..<i+M:
-      Bi.add(A[k][j..<j+M])
-    if Bi==B: echo "Yes"; quit()
+    if (i..<i+M).toSeq.mapIt(A[it][j..<j+M])==B: echo "Yes"; quit()
 echo "No"

@@ -1,7 +1,5 @@
 include atcoder/header
 let N,M=nextInt()
-import deques
-var A=newSeqWith(N,nextInt()).toDeque
-var a=0; while A.toSeq.toHashSet==(1..M).toSeq.toHashSet:
-  A.popLast; a+=1
+var A=newSeqWith(N,nextInt())
+var a=0; while A.toHashSet.len==M: discard A.pop; a+=1
 echo a

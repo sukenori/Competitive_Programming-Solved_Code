@@ -1,23 +1,23 @@
 include atcoder/header
 let N,M=nextInt()
-import atcoder/dsu
-var
-  d=initDSU(N)
-  c=0.repeat(N)
-  e:seq[(int,int)]
-  a=0
+var s:HashSet[(int,int)]
 for _ in 1..M:
   let A,B=nextInt()-1
-  e.add((min(A,B),max(A,B)))
-  if not (d.same(A,B) and c[A]==1 and c[B]==1) and (d.same(A,B) or c[A]==2 or c[B]==2): a+=1
-  else:
-    d.merge(A,B)
-    c[A]+=1; c[B]+=1
-echo d.groups
-echo c
-if d.groups.len>1: echo a+d.groups.len
-else:
-  echo a
-  let o=(0..<N).toSeq.filterIt(c[it]==1).sorted
-  if (o[0],o[1]) in e: echo a-1
-  else: echo a+1
+  s.incl((min(A,B),max(A,B)))
+var
+  p=(0..<N).toSeq
+  a=int.inf
+while true:
+  var s1:HashSet[(int,int)]
+  for i in 0..<N:
+    s1.incl((min(p[i],p[(i+1) mod N]),max(p[i],p[(i+1) mod N])))
+  a.min=(s-s1).len+(s1-s).len
+  if N>=6:
+    var s20,s21:HashSet[(int,int)]
+    for i in 0..<3:
+    s20.incl((min(p[i],p[(i+1) mod N]),max(p[i],p[(i+1) mod N])))
+    for i in 3..<N:
+    s21.incl((min(p[i],p[(i+1) mod N]),max(p[i],p[(i+1) mod N])))
+  a.min=(s-s1).len+(s1-s).len
+  if N==8:
+  if not p.nextPermutation(): break

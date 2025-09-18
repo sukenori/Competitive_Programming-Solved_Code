@@ -1,4 +1,4 @@
-include atcoder/header
+jinclude atcoder/header
 let N,Q=nextInt()
 var o=newSeq[tuple[q,p:int;s:string]](Q)
 for i in 0..<Q:

@@ -6,5 +6,5 @@ for i in 1..N:
   let A,B=nextInt()
   for j in 0..H-A: dp[i][j].max=dp[i-1][j+A]
   for j in 0..H: dp[i][j].max=dp[i-1][j]-B
-  if dp[i].allIt(it<0): echo i-1; quit()
+  if dp[i][0]<0: echo i-1; quit()
 echo N

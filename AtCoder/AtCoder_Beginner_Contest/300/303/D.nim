@@ -2,17 +2,12 @@ include atcoder/header
 let
   X,Y,Z=nextInt()
   S=nextString()
-  n=S.len
 var
   dp0=0
-  dp1=Z
+  dp1=int.inf
 for Si in S:
-  var ndp0,ndp1:int
-  if Si=='a':
-    ndp0=[dp0+X,dp1+Y+Z,dp1+Z+X].min
-    ndp1=[dp0+X+Z,dp0+Z+Y,dp1+Y].min
-  else:
-    ndp0=[dp0+Y,dp1+X+Z,dp1+Z+Y].min
-    ndp1=[dp0+Z+X,dp0+Y+Z,dp1+X].min
-  dp0=ndp0; dp1=ndp1
+  dp0.min=dp1+Z
+  dp1.min=dp0+Z
+  if Si=='a': dp0+=X; dp1+=Y
+  else: dp0+=Y; dp1+=X
 echo min(dp0,dp1)

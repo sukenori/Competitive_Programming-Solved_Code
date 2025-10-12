@@ -4,16 +4,13 @@ for _ in 1..T:
   let
     N=nextInt()
     S=newSeqWith(N,nextInt())
+    s=S[1..<N-1].sorted
   var
-    d=false.repeat(N)
-    h=S[0]
+    i=0
+    h=S[i]
     a=1
-  d[0]=true
   while true:
-    if S[^1]<=h*2: echo a+1; break
-    else:
-      let s=(0..<N).toSeq.filterIt(not d[it] and S[it]<=h*2)
-      if s.len==0: echo -1; break
-      else:
-        let i=s.sortedByIt(S[it])[^1]
-        d[i]=true; h=S[i];a+=1
+    if h*2>=S[^1]: a+=1; echo a; break
+    elif (N>2 and h*2<s[i]) or i==N-2: echo -1; break
+    i=s[i..^1].upperBound(h*2)+i
+    h=s[i-1]; a+=1

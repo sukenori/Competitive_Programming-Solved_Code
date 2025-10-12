@@ -1,7 +1,3 @@
 include atcoder/header
 let S,T=nextString()
-var a=true
-for i in 1..<S.len:
-  if S[i].isUpperAscii:
-    if S[i-1] notin T: a=false
-echo if a: "Yes" else: "No"
+echo if (1..<S.len).toSeq.allIt(S[it].isLowerAscii or (S[it].isUpperAscii and S[it-1] in T)): "Yes" else: "No"

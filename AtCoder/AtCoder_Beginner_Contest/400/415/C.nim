@@ -7,11 +7,13 @@ for _ in 1..T:
     S="0"&nextString()
   var
     q=[0].toDeque
-    a=false.repeat(2^N)
-  a[0]=true
-  for i in 0..<2^N-1:
-    if a[i]:
-      for j in 0..<N:
+    d=false.repeat(2^N)
+  d[0]=true
+  while q.len>0:
+    let i=q.popLast
+    for j in 0..<N:
+      if (i shr j and 1)==0:
         let ni=i+1 shl j
-        if (i shr j and 1)==0 and S[ni]=='0': a[ni]=true
-  echo if a[^1]: "Yes" else: "No"
+        if not d[ni] and S[ni]=='0':
+          d[ni]=true; q.addLast(ni)
+  echo if d[^1]: "Yes" else: "No"

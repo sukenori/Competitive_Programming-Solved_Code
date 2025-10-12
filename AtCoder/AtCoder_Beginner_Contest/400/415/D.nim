@@ -1,14 +1,13 @@
 include atcoder/header
-var N,M=nextInt()
-import heapqueue
-var q:Heapqueue[(int,int,int)]
+var
+  N,M=nextInt()
+  t=newSeq[(int,int)](M)
 for i in 0..<M:
   let A,B=nextInt()
-  q.push((A-B,A,B))
+  t[i]=(A-B,A)
+t=t.sortedByIt(it[0])
 var a=0
-while q.len>0:
-  let (d,A,B)=q.pop
-  if N>=A:
-    let c=(N-A) div d+1
-    N-=d*c; a+=c
+for (d,A) in t:
+  let ai=max(0,(N-(A-d)) div d)
+  N-=d*ai; a+=ai
 echo a

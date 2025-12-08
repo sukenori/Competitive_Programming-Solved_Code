@@ -1,18 +1,17 @@
 include atcoder/header
 import atcoder/modint
 type mint=modint998244353
-var c,s=newSeqWith(61,newSeq[mint](61))
-c[0][0]=1
-for i in 0..<60:
-  for j in 0..i:
-    c[i+1][j+1]+=c[i][j]
-    s[i+1][j+1]+=s[i][j]
-    s[i+1][j+1]+=c[i][j]*2.mint.pow(i)
-    c[][]
-
+let m=(0..<60).toSeq.mapIt(10.mint.pow(it))
 let T=nextInt()
 for _ in 1..T:
   let N,K=nextInt()
-  for i in 0..<60:
-    if (N shr i and 1)==1:
-      s(i,K-(i-1))
+  var v:seq[seq[int]]
+  proc f(i:int,c:seq[int])=
+    if i==N:
+      var v=v; v.add(c)
+    else:
+      if K-c.len<N-i: f(i+1,c)
+      if c.len<K:
+        var c=c; c.add(i); f(i+1,c)
+  f(0,newSeq[int]())
+  echo v.mapIt(it.mapIt(m[it]).sum).sum

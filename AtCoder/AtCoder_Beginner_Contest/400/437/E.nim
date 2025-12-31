@@ -1,4 +1,5 @@
-include "../.Library/template.nim"
+include "/workspaces/AtCoder-Nim/.Library/default_template.nim"
+include "/workspaces/AtCoder-Nim/.Library/Structure/Implicit_Treap.nim"
 let N = int.input
 type Node = ref object
   map: Table[int, Node]

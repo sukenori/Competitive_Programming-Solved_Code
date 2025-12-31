@@ -1,13 +1,13 @@
-include "../.Library/template.nim"
+include "/workspaces/AtCoder-Nim/.Library/default_template.nim"
+include "/workspaces/AtCoder-Nim/.Library/Structure/Implicit_Treap.nim"
 let T = int.input
-loop(T):
+loop T:
   let N = int.input
   var
     s = 0
-    d = Seq[N: int]
-  for i in 0 ..< N:
+    d = initMultiSet[int]()
+  loop N:
     var W, P = int.input
-    s += P; d[i] = W + P
-  d.sort
-  i := 0; while s - d[i] >= 0: s -= d[i]; i += 1
-  echo i
+    s += P; d.incl(W + P)
+  while s - d.peekFirst >= 0: s -= d.popFirst
+  echo N - d.len

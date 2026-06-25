@@ -9,11 +9,11 @@ for h in 1..H:
 var a=0
 for hl in 1..H:
   for hh in hl..H:
-    var wh=1
+    var whl,whh=0
+    proc s(wl,wh:int):int=c[hh][wh]-c[hh][wl-1]-c[hl-1][wh]+c[hl-1][wl-1]
     for wl in 1..W:
-      while true:
-        let s=c[hh][wh]-c[hh][wl-1]-c[hl-1][wh]+c[hl-1][wl-1]
-        if s==K: a+=1
-        if wh<W and s<=K: wh+=1
-        else: break
+      whl.chMax(wl-1); whh.chMax(wl-1)
+      while whl<W and s(wl,whl+1)<K: whl+=1
+      while whh<W and s(wl,whh+1)<=K: whh+=1
+      a+=whh-whl
 echo a

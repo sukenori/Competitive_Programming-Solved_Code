@@ -3,13 +3,12 @@ let
   N=int.input
   S=string.input
 var
+  a=Seq[N:int]
+  l=0
+  r=N-1
   f=true
-  a=[1].toDeque
-for i in 1..<N:
-  if S[i-1]=='o': f=not f
-  if f:
-    a.addLast(i+1)
-  else: a.addFirst(i+1)
-var ans=a.toSeq
-if S.count("o") mod 2==1: ans.reverse
-echo ans.join(" ") 
+for i in (N-1..0,1):
+  if S[i]=='o': f=not f
+  if f: a[r]=i+1; r-=1
+  else: a[l]=i+1; l+=1
+echo a.join(" ")
